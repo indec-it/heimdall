@@ -1,0 +1,22 @@
+{
+  "name": "@indec/heimdall",
+  "version": "0.0.1-beta.0",
+  "private": false,
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint ./",
+    "precommit": "npm test",
+    "commitmsg": "validate-commit-msg"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^3.2.0",
+    "eslint": "^4.7.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "husky": "^0.14.3"
+  },
+  "peerDependencies": {
+    "request": "^2.81.0"
+  },
+  "license": "MIT"
+}

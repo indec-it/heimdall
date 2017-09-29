@@ -1,6 +1,6 @@
 {
   "name": "@indec/heimdall",
-  "version": "0.0.1-beta.1",
+  "version": "0.0.1-beta.2",
   "private": false,
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,9 @@
   },
   "peerDependencies": {
     "request": "^2.81.0"
+  },
+  "engines": {
+    "node": ">=6.11.x || 7.x || 8.x"
   },
   "license": "MIT"
 }

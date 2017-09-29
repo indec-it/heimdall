@@ -1,3 +1,3 @@
-exports.http = require('./http');
-exports.login = require('./login');
-exports.token = require('./token');
+exports.Http = require('./http');
+exports.LoginService = require('./login');
+exports.TokenService = require('./token');

@@ -8,6 +8,14 @@ module.exports = class TokenService {
         return localStorage.getItem('id_token');
     }
 
+    /**
+     * Returns True
+     * @returns {boolean}
+     */
+    static hasSession() {
+        return !!localStorage.getItem('id_token');
+    }
+
     static clear() {
         localStorage.removeItem('id_token');
     }

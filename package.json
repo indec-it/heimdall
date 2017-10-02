@@ -1,12 +1,12 @@
 {
   "name": "@indec/heimdall",
-  "version": "0.0.1-beta.3",
+  "version": "0.0.1-beta.4",
   "private": false,
   "main": "index.js",
   "scripts": {
     "test": "eslint ./",
     "precommit": "npm test",
-    "commitmsg": "validate-commit-msg"
+    "commitmsg": "commitlint -e"
   },
   "dependencies": {},
   "devDependencies": {

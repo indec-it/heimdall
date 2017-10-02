@@ -14,7 +14,7 @@ module.exports = class LoginService {
                 'content-type': 'application/json'
             }
         });
-        const {token} = response.json();
+        const {token} = await response.json();
         TokenService.setToken(token);
         return token;
     }

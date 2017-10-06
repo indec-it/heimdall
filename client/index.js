@@ -1,4 +1,4 @@
-import Http from './Http';
+import Http from './http';
 import LoginService from './login';
 import TokenService from './token';
 

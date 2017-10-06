@@ -1,6 +1,7 @@
-const TokenService = require('./token');
+/* global fetch */
+import TokenService from './token';
 
-module.exports = class LoginService {
+export default class LoginService {
     constructor(endpoint) {
         this.endpoint = endpoint;
     }
@@ -18,4 +19,4 @@ module.exports = class LoginService {
         TokenService.setToken(token);
         return token;
     }
-};
+}

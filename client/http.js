@@ -1,7 +1,7 @@
-/* global window fetch FormData */
-const TokenService = require('./token');
+/* global fetch FormData */
+import TokenService from './token';
 
-module.exports = class Http {
+export default class Http {
     static async get(url) {
         const response = await fetch(url, {
             credentials: 'same-origin',
@@ -63,4 +63,4 @@ module.exports = class Http {
         });
         return response.json();
     }
-};
+}

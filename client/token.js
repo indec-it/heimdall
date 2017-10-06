@@ -1,5 +1,5 @@
 /* global localStorage */
-module.exports = class TokenService {
+export default class TokenService {
     static setToken(token) {
         localStorage.setItem('id_token', token);
     }
@@ -23,4 +23,4 @@ module.exports = class TokenService {
     static getAuthHeader() {
         return `Bearer ${TokenService.getToken()}`;
     }
-};
+}

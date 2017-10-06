@@ -1,3 +1,7 @@
-exports.Http = require('./http');
-exports.LoginService = require('./login');
-exports.TokenService = require('./token');
+import Http from './Http';
+import LoginService from './login';
+import TokenService from './token';
+
+export {Http};
+export {LoginService};
+export {TokenService};

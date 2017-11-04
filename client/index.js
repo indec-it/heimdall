@@ -2,6 +2,8 @@ import Http from './http';
 import LoginService from './login';
 import TokenService from './token';
 
-export {Http};
+const http = new Http(TokenService);
+
+export {http};
 export {LoginService};
 export {TokenService};

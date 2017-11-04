@@ -1,6 +1,6 @@
 {
   "name": "@indec/heimdall",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "main": "index.js",
   "scripts": {
@@ -10,14 +10,18 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@commitlint/cli": "^4.1.0",
+    "@commitlint/cli": "^4.2.2",
     "babel-eslint": "^8.0.1",
-    "eslint": "^4.8.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "husky": "^0.14.3"
+    "eslint": "^4.10.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "husky": "^0.14.3",
+    "react-native": ">=0.48.0"
   },
   "peerDependencies": {
     "request": "^2.81.0"
+  },
+  "optionalDependencies": {
+    "react-native": ">=0.48.0"
   },
   "engines": {
     "node": ">=6.11.x || 7.x || 8.x"

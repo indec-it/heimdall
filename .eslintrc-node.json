@@ -2,15 +2,17 @@
   "plugins": [
     "promise"
   ],
-  "extends": "./.eslintrc-base.json",
+  "extends": [
+    "./.eslintrc-base.json",
+    "plugin:promise/recommended"
+  ],
   "env": {
     "browser": false,
     "node": true
   },
   "rules": {
-    "promise/always-return": 2,
-    "promise/no-return-wrap": 2,
-    "promise/param-names": 2,
-    "promise/catch-or-return": 2
+    "promise/no-nesting": "off",
+    "promise/no-callback-in-promise": "off",
+    "promise/avoid-new": "off"
   }
 }

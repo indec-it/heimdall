@@ -1,11 +1,13 @@
 /* global localStorage */
+const TOKEN_KEY = 'id_token';
+
 export default class TokenService {
     /**
      * Store the session token
      * @param token A token to be saved.
      */
     static setToken(token) {
-        localStorage.setItem('id_token', token);
+        localStorage.setItem(TOKEN_KEY, token);
     }
 
     /**
@@ -13,7 +15,7 @@ export default class TokenService {
      * @returns {string} Returns the current session token.
      */
     static getToken() {
-        return localStorage.getItem('id_token');
+        return localStorage.getItem(TOKEN_KEY);
     }
 
     /**
@@ -21,14 +23,14 @@ export default class TokenService {
      * @returns {boolean} Returns True when a token is present.
      */
     static hasSession() {
-        return !!localStorage.getItem('id_token');
+        return !!localStorage.getItem(TOKEN_KEY);
     }
 
     /**
      * Clear the session token.
      */
     static clear() {
-        localStorage.removeItem('id_token');
+        localStorage.removeItem(TOKEN_KEY);
     }
 
     /**

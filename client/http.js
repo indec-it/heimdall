@@ -1,10 +1,12 @@
 /* global fetch FormData */
-import TokenService from './token';
-
 /**
  * A wrapper for the fetch API.
  */
 export default class Http {
+    constructor(tokenService) {
+        this.tokenService = tokenService;
+    }
+
     /**
      * Send a GET request to the given URL.
      * @param {String} url a URL where the request is send.
@@ -14,7 +16,7 @@ export default class Http {
         const response = await fetch(url, {
             credentials: 'same-origin',
             headers: {
-                authorization: TokenService.getAuthHeader()
+                authorization: await this.tokenService.getAuthHeader()
             }
         });
         return response.json();
@@ -33,7 +35,7 @@ export default class Http {
             body: JSON.stringify(body),
             headers: {
                 'content-type': 'application/json',
-                authorization: TokenService.getAuthHeader()
+                authorization: await this.tokenService.getAuthHeader()
             }
         });
         return response.json();
@@ -52,7 +54,7 @@ export default class Http {
             body: JSON.stringify(body),
             headers: {
                 'content-type': 'application/json',
-                authorization: TokenService.getAuthHeader()
+                authorization: await this.tokenService.getAuthHeader()
             }
         });
         return response.json();
@@ -71,7 +73,7 @@ export default class Http {
             body: JSON.stringify(body),
             headers: {
                 'content-type': 'application/json',
-                authorization: TokenService.getAuthHeader()
+                authorization: await this.tokenService.getAuthHeader()
             }
         });
         return response.json();
@@ -85,7 +87,7 @@ export default class Http {
      * @returns {Promise<any>} A promise with the response body when the request is completed.
      */
     static async delete(url, body) {
-        return Http.del(url,body);
+        return Http.del(url, body);
     }
 
     /**
@@ -101,7 +103,7 @@ export default class Http {
         const response = await fetch(url, {
             method: 'POST',
             credentials: 'same-origin',
-            authorization: TokenService.getAuthHeader(),
+            authorization: await this.tokenService.getAuthHeader(),
             body: data
         });
         return response.json();

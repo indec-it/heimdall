@@ -1,11 +1,10 @@
 /* global fetch */
-import TokenService from './token';
-
 /**
  * Send login requests to the authorization authority.
  */
 export default class LoginService {
-    constructor(endpoint) {
+    constructor(tokenService, endpoint) {
+        this.tokenService = tokenService;
         this.endpoint = endpoint;
     }
 
@@ -26,7 +25,7 @@ export default class LoginService {
                 }
             });
             const {token} = await response.json();
-            TokenService.setToken(token);
+            this.tokenService.setToken(token);
             return token;
         } catch (err) {
             return err;

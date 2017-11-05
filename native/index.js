@@ -1,6 +1,6 @@
-import Http from '../client/Http';
+import Http from '../client/http';
 import LoginService from '../client/login';
-import TokenService from './Token';
+import TokenService from './token';
 
 const http = new Http(TokenService);
 

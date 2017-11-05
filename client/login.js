@@ -12,14 +12,15 @@ export default class LoginService {
      * Send a login request to the authorization authority.
      * @param {string} username the username credential.
      * @param {string} password the password credential.
+     * @param {string} redirectUri optional URI for authentication, should include protocol.
      * @returns {Promise<string>} A promise with the new session token.
      */
-    async login(username, password) {
+    async login(username, password, redirectUri) {
         try {
             const response = await fetch(`${this.endpoint}/oauth/login`, {
                 method: 'post',
                 credentials: 'same-origin',
-                body: JSON.stringify({username, password}),
+                body: JSON.stringify({username, password, redirectUri}),
                 headers: {
                     'content-type': 'application/json'
                 }

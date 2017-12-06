@@ -91,7 +91,7 @@ export default class Http {
     }
 
     /**
-     * Send a DELETE request to the given URL.
+     * Send a POST file request to the given URL.
      * @param {string} url a URL where the request is send.
      * @param {Blob} file a file to be send in the request body.
      * @returns {Promise<any>} A promise with the response body when the request is completed.
@@ -103,7 +103,9 @@ export default class Http {
         const response = await fetch(url, {
             method: 'POST',
             credentials: 'same-origin',
-            authorization: await this.tokenService.getAuthHeader(),
+            headers: {
+                authorization: await this.tokenService.getAuthHeader()
+            },
             body: data
         });
         return response.json();

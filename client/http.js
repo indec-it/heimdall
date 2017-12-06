@@ -101,7 +101,9 @@ export default class Http {
         const response = await fetch(url, {
             method: 'POST',
             credentials: 'same-origin',
-            authorization: TokenService.getAuthHeader(),
+            headers: {
+                authorization: TokenService.getAuthHeader()
+            },
             body: data
         });
         return response.json();

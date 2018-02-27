@@ -1,10 +1,17 @@
 /* global fetch */
+import {Http} from "@indec/heimdall/client/index";
+
+const getCookie = async token => {
+    const {success} = await Http.post('public-api/signIn', {token});
+    console.log(success);
+    return success;
+}
+
 /**
  * Send login requests to the authorization authority.
  */
 export default class LoginService {
-    constructor(tokenService, endpoint) {
-        this.tokenService = tokenService;
+    constructor(endpoint) {
         this.endpoint = endpoint;
     }
 
@@ -12,24 +19,26 @@ export default class LoginService {
      * Send a login request to the authorization authority.
      * @param {string} username the username credential.
      * @param {string} password the password credential.
-     * @param {string} redirectUri optional URI for authentication, should include protocol.
      * @returns {Promise<string>} A promise with the new session token.
      */
-    async login(username, password, redirectUri) {
-        try {
-            const response = await fetch(`${this.endpoint}/oauth/login`, {
-                method: 'post',
-                credentials: 'same-origin',
-                body: JSON.stringify({username, password, redirectUri}),
-                headers: {
-                    'content-type': 'application/json'
+    login() {
+        return new Promise((resolve, reject) => {
+            const popup = window.open(`${this.endpoint}/loki?redirectUri=${window.location.host}`, "Heimdall", "width=600,height=400");
+            window.addEventListener('message', async e => {
+                const token = e.data.token;
+                if (token) {
+                    await getCookie(token);
+                    resolve(token);
+
+                } else {
+                    reject(err);
                 }
-            });
-            const {token} = await response.json();
-            this.tokenService.setToken(token);
-            return token;
-        } catch (err) {
-            return err;
-        }
+            }, false);
+            if (window.focus) {
+                popup.focus()
+            }
+        });
     }
+
 }
+

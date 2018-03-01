@@ -1,44 +1,36 @@
-/* global fetch */
-import {Http} from "@indec/heimdall/client/index";
+/* global window */
+import {Http} from '@indec/heimdall/client';
 
-const getCookie = async token => {
-    const {success} = await Http.post('public-api/signIn', {token});
-    console.log(success);
-    return success;
-}
+
+const getCookie = async (appAuthUrl, code) => Http.post(appAuthUrl, {code});
 
 /**
- * Send login requests to the authorization authority.
+ * Manage login with the identity provider.
  */
 export default class LoginService {
-    constructor(endpoint) {
-        this.endpoint = endpoint;
+    constructor(endpoint,authUri) {
+        this.endpoint= endpoint;
+        this.authUri = authUri;
     }
 
     /**
-     * Send a login request to the authorization authority.
-     * @param {string} username the username credential.
-     * @param {string} password the password credential.
+     * Opens a login popup using the identity provider.
      * @returns {Promise<string>} A promise with the new session token.
      */
     login() {
         return new Promise((resolve, reject) => {
-            const popup = window.open(`${this.endpoint}/loki?redirectUri=${window.location.host}`, "Heimdall", "width=600,height=400");
+            const popup = window.open(`${this.endpoint}/loki?redirectUri=${window.location.host}`, 'Heimdall', 'width=600,height=400');
             window.addEventListener('message', async e => {
-                const token = e.data.token;
-                if (token) {
-                    await getCookie(token);
-                    resolve(token);
-
-                } else {
-                    reject(err);
+                const {code} = e.data;
+                if (code) {
+                    await getCookie(this.authUri, code);
+                    return resolve(code);
                 }
+                reject();
             }, false);
             if (window.focus) {
-                popup.focus()
+                popup.focus();
             }
         });
     }
-
 }
-

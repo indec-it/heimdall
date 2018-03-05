@@ -12,7 +12,7 @@ export default class Http {
      * @param {String} url a URL where the request is send.
      * @returns {Promise<any>} A promise with the response body when the request is completed.
      */
-    static async get(url) {
+    async get(url) {
         const response = await fetch(url, {
             credentials: 'same-origin',
             headers: {
@@ -28,7 +28,7 @@ export default class Http {
      * @param {any} body data to be included in the request body.
      * @returns {Promise<any>} A promise with the response body when the request is completed.
      */
-    static async post(url, body) {
+    async post(url, body) {
         const response = await fetch(url, {
             method: 'post',
             credentials: 'same-origin',
@@ -47,7 +47,7 @@ export default class Http {
      * @param {any} body data to be included in the request body.
      * @returns {Promise<any>} A promise with the response body when the request is completed.
      */
-    static async put(url, body) {
+    async put(url, body) {
         const response = await fetch(url, {
             method: 'put',
             credentials: 'same-origin',
@@ -66,7 +66,7 @@ export default class Http {
      * @param {any} body data to be included in the request body.
      * @returns {Promise<any>} A promise with the response body when the request is completed.
      */
-    static async del(url, body) {
+    async del(url, body) {
         const response = await fetch(url, {
             method: 'delete',
             credentials: 'same-origin',
@@ -86,7 +86,7 @@ export default class Http {
      * @param {any} body data to be included in the request body.
      * @returns {Promise<any>} A promise with the response body when the request is completed.
      */
-    static async delete(url, body) {
+    async delete(url, body) {
         return Http.del(url, body);
     }
 
@@ -96,7 +96,7 @@ export default class Http {
      * @param {Blob} file a file to be send in the request body.
      * @returns {Promise<any>} A promise with the response body when the request is completed.
      */
-    static async postFile(url, file) {
+    async postFile(url, file) {
         const data = new FormData();
         data.append('file', file);
 

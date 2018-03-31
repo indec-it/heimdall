@@ -1,0 +1,33 @@
+.bifrost {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  .bifrost-sidebar {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    padding: 0 20px;
+  }
+  .bifrost-login {
+    display: flex;
+    flex-grow: 3;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h3 {
+      padding-right: 8%;
+      padding-left: 8%;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+  }
+  @media (min-width: 992px) {
+    flex-direction: row;
+    .bifrost-sidebar {
+      max-width: 260px;
+      min-height: 120px;
+    }
+  }
+}

@@ -29,7 +29,7 @@ export default class LoginService {
             this.tokenService.setToken(token);
             return token;
         } catch (err) {
-            return err;
+            return null;
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@indec/heimdall",
-  "version": "0.2.7-next.0",
+  "version": "0.2.7",
   "private": false,
   "main": "index.js",
   "scripts": {

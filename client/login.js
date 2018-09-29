@@ -32,4 +32,50 @@ export default class LoginService {
             return null;
         }
     }
+
+    async fetchRefreshToken(clientId, clientSecret) {
+        try {
+            const response = await fetch(`${this.endpoint}/oauth/refreshToken`, {
+                method: 'post',
+                credentials: 'same-origin',
+                body: JSON.stringify({
+                    grant_type: 'refresh_code',
+                    'client_id': clientId,
+                    'client_secret': clientSecret
+                }),
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: await this.tokenService.getAuthHeader()
+                }
+            });
+            const {refreshToken} = await response.json();
+            this.tokenService.setRefreshToken(refreshToken);
+            return refreshToken;
+        } catch (err) {
+            return null;
+        }
+    }
+
+    async refreshAccessToken(clientId, clientSecret) {
+        try {
+            const query = [
+                'grant_type=refresh_code',
+                `clientId=${clientId}`,
+                `clientSecret=${clientSecret}`,
+                `refresh_token=${await this.tokenService.getRefreshToken()}`
+            ].join('&');
+
+            const response = await fetch(`${this.endpoint}/oauth/refreshToken?${query}`, {
+                credentials: 'same-origin',
+                headers: {
+                    authorization: await this.tokenService.getAuthHeader()
+                }
+            });
+            const {token} = await response.json();
+            this.tokenService.setToken(token);
+            return token;
+        } catch (err) {
+            return null;
+        }
+    }
 }

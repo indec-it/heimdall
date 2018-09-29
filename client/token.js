@@ -1,6 +1,10 @@
 /* global localStorage */
 const TOKEN_KEY = 'id_token';
 
+const throwRefreshTokenError = () => {
+    throw new Error('HeimdallError: The refresh token should not be used on web browsers.');
+};
+
 export default class TokenService {
     /**
      * Store the session token
@@ -16,6 +20,20 @@ export default class TokenService {
      */
     static getToken() {
         return localStorage.getItem(TOKEN_KEY);
+    }
+
+    /**
+     * Store the refresh token
+     */
+    static setRefreshToken() {
+        throwRefreshTokenError();
+    }
+
+    /**
+     * Get the refresh token.
+     */
+    static getRefreshToken() {
+        throwRefreshTokenError();
     }
 
     /**

@@ -60,8 +60,8 @@ export default class LoginService {
         try {
             const query = [
                 'grant_type=refresh_code',
-                `clientId=${clientId}`,
-                `clientSecret=${clientSecret}`,
+                `client_id=${clientId}`,
+                `client_secret=${clientSecret}`,
                 `refresh_token=${await this.tokenService.getRefreshToken()}`
             ].join('&');
 

@@ -1,6 +1,6 @@
 # Heimdall
 
-## Instalation
+## Installation
 
     npm install @indec/heimdall
 
@@ -15,7 +15,7 @@ AUTH_CLIENT_SECRET=<your app secret>
 GRANT_TYPE=client_credentials
 ```
 
-## Example
+## Examples
 
 ### Login on client side
 
@@ -24,7 +24,7 @@ import {LoginService} from '@indec/heimdall/client';
 
 // ENDPOINT constant is your heimdall server. i.e: http://localhost:5000
 const loginService = new LoginService(ENDPOINT);
-const token = await loginService.login(username, password)
+const token = await loginService.login(username, password);
 ```
 
 ### Clean user session
@@ -41,9 +41,11 @@ List your app's users on server side:
 
 ```js
 const {UserService} = require('@indec/heimdall').services;
-UserService.fetchAll.then(
-    users => console.log(users)
-).catch(
-    err => console.error(err)
-)
+
+try {
+    const users = await UserService.fetchAll();
+    console.log(users);
+} catch (err) {
+    console.error(err);
+}
 ```

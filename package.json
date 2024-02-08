@@ -18,8 +18,8 @@
     "react-native": "^0.57.5"
   },
   "peerDependencies": {
-    "lodash": "^>=4.17",
-    "request": "^>=2.81"
+    "lodash": "^4.17",
+    "request": "^2.81"
   },
   "engines": {
     "node": ">=10.13"
